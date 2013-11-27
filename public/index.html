@@ -1,11 +1,12 @@
-<html>
-<head> 
+<html><head> 
 <title>Bharath Yarlagadda</title> 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+<script type="text/javascript" src="js/jquery.min.js"></script> 
 <style type="text/css"> 
+	
 	body {
 		background-color: #000
 	}
+
 	#console {
 		font-family: courier, monospace;
 		color: #fff;
@@ -125,32 +126,30 @@
 		else
 			this.write("|"); // else write it
 	}
-	}
+}
  
-	function replaceUrls(text) {
-		var http = text.indexOf("http://");
-		var space = text.indexOf(".me ", http);
-		if (space != -1) { 
-			var url = text.slice(http, space-1);
-			return text.replace(url, "<a href=\""  + url + "\">" + url + "</a>");
-		} else {
-		return text
-	}
-	}
-	
-	Typer.speed=3;
-	Typer.file="bharathyarlagadda.txt";
-	Typer.init();
+function replaceUrls(text) {
+	var http = text.indexOf("http://");
+	var space = text.indexOf(".me ", http);
+	if (space != -1) { 
+		var url = text.slice(http, space-1);
+		return text.replace(url, "<a href=\""  + url + "\">" + url + "</a>");
+	} else {
+	return text
+}
+}
+Typer.speed=3;
+Typer.file="bharathyarlagadda.txt";
+Typer.init();
  
-	var timer = setInterval("t();", 30);
-	function t() {
-		Typer.addText({"keyCode": 123748});
-		if (Typer.index > Typer.text.length) {
-			clearInterval(timer);
-		}
-	} 
+var timer = setInterval("t();", 30);
+function t() {
+	Typer.addText({"keyCode": 123748});
+	if (Typer.index > Typer.text.length) {
+		clearInterval(timer);
+	}
+}
+ 
 </script> 
 <div id="console"><span id="a">barry@busybox</span>:<span id="b">~</span><span id="c">$</span> cat bharathyarlagadda.txt<br><br>Hi, I'm Bharath Yarlagadda.<!-- laglaglaglaglaglaglaglaglaglaglaglag --><p>I am a grad student at University of Florida</p><!-- qowifjqwoeijfoqweijfqweoifjqweofijqweoqwoijefoqwijefoijfqiwoefjj --><p>This site is currently under development.</p><!--- oqwipjefqwioefjwioqfjoiqwjfeioqwjefoi ----><p>Thanks for checking this site out. Please come back later</p><!-- owlsqweoifjqwoefijqwoeifjqwoefijwef -->If you would like to get in touch with me<!-- slightdelayhere-->, feel free to send me an email.<!-- longlongcomment --> My email address is: <a href="mailto:bharath.yarlagadda89@gmail.com">bharath.yarlagadda89@gmail.com</a><br></div> 
-
-</body>
-</html>
+</body></html>
