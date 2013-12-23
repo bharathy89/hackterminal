@@ -1,155 +1,411 @@
-<html><head> 
-<title>Bharath Yarlagadda</title> 
-<script type="text/javascript" src="js/jquery.min.js"></script> 
-<style type="text/css"> 
-	
-	body {
-		background-color: #000
-	}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Bharath Yarlagadda</title>
+  
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.terminal.css">
 
-	#console {
-		font-family: courier, monospace;
-		color: #fff;
-		width:750px;
-		margin-left:auto;
-		margin-right:auto;
-		margin-top:100px;
-		font-size:14px;
-	}
-	a {
-		color: #0bc;
-		text-decoration: none;
-	}
-	#a {
-		color: #0f0;
-	}
-	#c {
-		color: #0bc;
-	}
-	#b {
-		color: #ff0096;
-	}
-</style> 
-</head> 
-<body> 
+  <script type="text/javascript" src="js/jquery-1.7.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/jquery.mousewheel-min.js"></script>
+  <script type="text/javascript" src="js/jquery.terminal-min.js"></script>
+  <script type="text/javascript" src="js/parse-1.2.15.min.js"></script>
+
+  <style type='text/css'>
+    body {
+        background: rgba(48,102,154,1);
+        background-size: cover;
+    }
+
+    header {
+        background-repeat: no-repeat;
+        background-position: top top;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        height: 20px;
+    }
+
+    canvas {
+        display: block;
+    }
+
+/* OS X Window
+======================================== */
+ .window {
+    background: rgba(222, 222, 222, 1.0);
+    height: 350px;
+    width: 550px;
+    left: 50px;
+    top: 100px;
+    border-radius: 5px;
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, .6), 0 22px 70px 4px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+    padding: 3px 0px;
+    text-align: left;
+    position: absolute;
+}
+
+.datawindow {
+    background: rgba(222, 222, 222, 1.0);
+    height: 500px;
+    width: 550px;
+    left: 670px;
+    top: 50px;
+    border-radius: 5px;
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, .6), 0 22px 70px 4px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+    padding: 3px 0px;
+    text-align: left;
+    position: absolute;
+}
+.container {
+    background: rgba(0,0,0,1.0);
+    height: 100%;
+    width: 100%;
+    max-height: 485px;
+    text-align: left;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:0px;
+    overflow: auto;
+}
+
+.terminal {
+    padding:3px;
+    overflow: auto;
+    height: 100%;
+    width: 554px;
+    background: rgba(145,194,201,1);
+    color: rgba(44,77,94,1);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.databox {
+    background: rgba(88,88,88,1.0);
+}
+
+img {
+    padding-left: 70px;
+    padding-right:70px;
+    padding-top:30px;
+    padding-bottom:30px;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+}
+
+img:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+
+h1 {
+    font: normal normal 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    text-align: center;
+    position:relative;
+    z-index:2;
+    top:-23px;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+    color:#444;
+}
+h2 {
+    font: normal bold 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    margin-bottom:3px;
+}
+
+h6 {
+    font: normal bold 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    margin-bottom:3px; 
+    color:#444;
+}
+
+p {
+    font: normal normal 11px/14px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    padding-top: 3px;
+}
+h2, p {
+    margin-left: 86px;
+}
+p a, p a:link, p a:visited, p a:hover, p a:active {
+    border-bottom: 1px dotted #888;
+    text-decoration: none;
+    color: #000;
+}
+nav {
+    height:19px;
+}
+nav a {
+    display: inline-block;
+    margin: 2px 2px 3px 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background: #f36;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, .5);
+    text-indent: -9999px;
+    position: relative;
+}
+nav a:before {
+    content:'';
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    box-shadow:inset 0 1px 4px rgba(0, 0, 0, .8);
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+nav a:after {
+    content:'';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    border-radius: 100%;
+    background: -webkit-linear-gradient(white, rgba(255, 255, 255, .9) 2%, white, rgba(255, 255, 255, .4) 16%, rgba(255, 255, 255, 0) 43%, rgba(255, 255, 255, .74), rgba(255, 255, 255, .7) 122%, rgba(255, 255, 255, .7));
+    box-shadow: inset 0px -3px -5px 3px rgba(255, 255, 255, 0.2), inset 0px 2px -5px 3px rgba(255, 255, 255, 0.2);
+}
+nav a.close {
+    background: #FD4E4E;
+}
+nav a.minimize {
+    background: #F3BB55;
+}
+nav a.maximize {
+    background: #96D16F;
+}
+
+</style>
+
 <script type="text/javascript"> 
-	var Typer={
-	text: null,
-	accessCountimer:null,
-	index:0, // current cursor position
-	speed:2, // speed of the Typer
-	file:"", //file, must be setted
-	accessCount:0, //times alt is pressed for Access Granted
-	deniedCount:0, //times caps is pressed for Access Denied
-	init: function(){// inizialize Hacker Typer
-		accessCountimer=setInterval(function(){Typer.updLstChr();},500); // inizialize timer for blinking cursor
-		$.get(Typer.file,function(data){// get the text file
-			Typer.text=data;// save the textfile in Typer.text
-			Typer.text = Typer.text.slice(0, Typer.text.length-1);
-		});
-	},
- 
-	content:function(){
-		return $("#console").html();// get console content
-	},
- 
-	write:function(str){// append to console content
-		$("#console").append(str);
-		return false;
-	},
- 
-	makeAccess:function(){//create Access Granted popUp      FIXME: popup is on top of the page and doesn't show is the page is scrolled
-		Typer.hidepop(); // hide all popups
-		Typer.accessCount=0; //reset count
-		var ddiv=$("<div id='gran'>").html(""); // create new blank div and id "gran"
-		ddiv.addClass("accessGranted"); // add class to the div
-		ddiv.html("<h1>ACCESS GRANTED</h1>"); // set content of div
-		$(document.body).prepend(ddiv); // prepend div to body
-		return false;
-	},
-	makeDenied:function(){//create Access Denied popUp      FIXME: popup is on top of the page and doesn't show is the page is scrolled
-		Typer.hidepop(); // hide all popups
-		Typer.deniedCount=0; //reset count
-		var ddiv=$("<div id='deni'>").html(""); // create new blank div and id "deni"
-		ddiv.addClass("accessDenied");// add class to the div
-		ddiv.html("<h1>ACCESS DENIED</h1>");// set content of div
-		$(document.body).prepend(ddiv);// prepend div to body
-		return false;
-	},
- 
-	hidepop:function(){// remove all existing popups
-		$("#deni").remove();
-		$("#gran").remove();
-	},
- 
-	addText:function(key){//Main function to add the code
-		if(key.keyCode==18){// key 18 = alt key
-			Typer.accessCount++; //increase counter 
-			if(Typer.accessCount>=3){// if it's presed 3 times
-				Typer.makeAccess(); // make access popup
-			}
-		}else if(key.keyCode==20){// key 20 = caps lock
-			Typer.deniedCount++; // increase counter
-			if(Typer.deniedCount>=3){ // if it's pressed 3 times
-				Typer.makeDenied(); // make denied popup
-			}
-		}else if(key.keyCode==27){ // key 27 = esc key
-			Typer.hidepop(); // hide all popups
-		}else if(Typer.text){ // otherway if text is loaded
-			var cont=Typer.content(); // get the console content
-			if(cont.substring(cont.length-1,cont.length)=="|") // if the last char is the blinking cursor
-				$("#console").html($("#console").html().substring(0,cont.length-1)); // remove it before adding the text
-			if(key.keyCode!=8){ // if key is not backspace
-				Typer.index+=Typer.speed;	// add to the index the speed
-			}else{
-				if(Typer.index>0) // else if index is not less than 0 
-					Typer.index-=Typer.speed;//	remove speed for deleting text
-			}
-			var text=Typer.text.substring(0,Typer.index)// parse the text for stripping html enities
-			var rtn= new RegExp("\n", "g"); // newline regex
-	
-			$("#console").html(text.replace(rtn,"<br/>"));// replace newline chars with br, tabs with 4 space and blanks with an html blank
-			window.scrollBy(0,50); // scroll to make sure bottom is always visible
-		}
-		if ( key.preventDefault && key.keyCode != 122 ) { // prevent F11(fullscreen) from being blocked
-			key.preventDefault()
-		};  
-		if(key.keyCode != 122){ // otherway prevent keys default behavior
-			key.returnValue = false;
-		}
-	},
- 
-	updLstChr:function(){ // blinking cursor
-		var cont=this.content(); // get console 
-		if(cont.substring(cont.length-1,cont.length)=="|") // if last char is the cursor
-			$("#console").html($("#console").html().substring(0,cont.length-1)); // remove it
-		else
-			this.write("|"); // else write it
-	}
+    Parse.initialize("b6VmJr9sfBHEloxMgHef1Yo13SV9hTUDsHE5gKfR", "vX6jMjRua0Aa39TYDAQvPWqmSMn7w6RCIlm6ujdu");
+    var TestObject = Parse.Object.extend("TestObject");
+    var testObject = new TestObject();
+      testObject.save({foo: "bar"}, {
+      success: function(object) {
+        $(".success").show();
+      },
+      error: function(model, error) {
+        $(".error").show();
+      }
+    });
+    window.onload = function(){
+    //canvas init
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    
+    //canvas dimensions
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+    
+    //snowflake particles
+    var mp = 25; //max particles
+    var particles = [];
+    for(var i = 0; i < mp; i++)
+    {
+        particles.push({
+            x: Math.random()*W, //x-coordinate
+            y: Math.random()*H, //y-coordinate
+            r: Math.random()*4+1, //radius
+            d: Math.random()*mp //density
+        })
+    }
+    
+    //Lets draw the flakes
+    function draw()
+    {
+        ctx.clearRect(0, 0, W, H);
+        
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.beginPath();
+        for(var i = 0; i < mp; i++)
+        {
+            var p = particles[i];
+            ctx.moveTo(p.x, p.y);
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+        }
+        ctx.fill();
+        update();
+    }
+    
+    //Function to move the snowflakes
+    //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+    var angle = 0;
+    function update()
+    {
+        angle += 0.01;
+        for(var i = 0; i < mp; i++)
+        {
+            var p = particles[i];
+            //Updating X and Y coordinates
+            //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+            //Every particle has its own density which can be used to make the downward movement different for each flake
+            //Lets make it more random by adding in the radius
+            p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+            p.x += Math.sin(angle) * 2;
+            
+            //Sending flakes back from the top when it exits
+            //Lets make it a bit more organic and let flakes enter from the left and right also.
+            if(p.x > W || p.x < 0 || p.y > H)
+            {
+                if(i%3 > 0) //66.67% of the flakes
+                {
+                    particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+                }
+                else
+                {
+                    //If the flake is exitting from the right
+                    if(Math.sin(angle) > 0)
+                    {
+                        //Enter fromth
+                        particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+                    }
+                    else
+                    {
+                        //Enter from the right
+                        particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+                    }
+                }
+            }
+        }
+    }
+    
+    //animation loop
+    setInterval(draw, 33);
 }
- 
-function replaceUrls(text) {
-	var http = text.indexOf("http://");
-	var space = text.indexOf(".me ", http);
-	if (space != -1) { 
-		var url = text.slice(http, space-1);
-		return text.replace(url, "<a href=\""  + url + "\">" + url + "</a>");
-	} else {
-	return text
-}
-}
-Typer.speed=3;
-Typer.file="bharathyarlagadda.txt";
-Typer.init();
- 
-var timer = setInterval("t();", 30);
-function t() {
-	Typer.addText({"keyCode": 123748});
-	if (Typer.index > Typer.text.length) {
-		clearInterval(timer);
-	}
-}
- 
-</script> 
-<div id="console"><span id="a">barry@busybox</span>:<span id="b">~</span><span id="c">$</span> cat bharathyarlagadda.txt<br><br>Hi, I'm Bharath Yarlagadda.<!-- laglaglaglaglaglaglaglaglaglaglaglag --><p>I am a grad student at University of Florida</p><!-- qowifjqwoeijfoqweijfqweoifjqweofijqweoqwoijefoqwijefoijfqiwoefjj --><p>This site is currently under development.</p><!--- oqwipjefqwioefjwioqfjoiqwjfeioqwjefoi ----><p>Thanks for checking this site out. Please come back later</p><!-- owlsqweoifjqwoefijqwoeifjqwoefijwef -->If you would like to get in touch with me<!-- slightdelayhere-->, feel free to send me an email.<!-- longlongcomment --> My email address is: <a href="mailto:bharath.yarlagadda89@gmail.com">bharath.yarlagadda89@gmail.com</a><br></div> 
-</body></html>
+</script>
+
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<header></header>
+<div id="datawin" class="datawindow" style="display: none;" >
+    <nav>
+        <a href="#" class="close"></a>
+        <a href="#" class="minimize"></a>
+        <a href="#" class="maximize"></a>
+        <h1 id="windowname" >Terminal</h1>
+    </nav>
+    <div id="datacontainer" class="container"></div>
+</div>
+<div class="window drag">
+    <nav>
+        <a href="#" class="close"></a>
+        <a href="#" class="minimize"></a>
+        <a href="#" class="maximize"></a>
+        <h1 id="windowname" >Terminal</h1>
+    </nav>
+    <div class="container">
+        <div id="jq_terminal" class="terminal">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var notroot = false;
+var currentDirectory = "";
+var func = {
+
+    projects: function() {
+        $('.databox').remove();
+        $('#datawin').fadeOut();
+        $('#datawin').fadeIn();
+        $('#windowname').text("Projects");
+        $('#datawin > #datacontainer').append('<div class="databox" width="100%" height="100%">'+
+            '<a href="https://github.com/bharathy89/Bustogo"><img src="bustogo.png"></a>'+
+            '<a href="https://github.com/bharathy89/"><img src="mapla.png"></a>'+
+            '<a href="https://github.com/bharathy89/voxpop-root"><img src="voxpop.png"></a>'+
+            '<a href="https://github.com/bharathy89/"><img src="yada.png"></a>'+
+            '<a href="https://github.com/bharathy89/zendroid"><img src="zendroid.png"></a>'+
+            '<a href="https://github.com/bharathy89/hackterminal"><img src="myterminalwebsite.png"></a>'+
+            '</div>');
+    },
+
+    work_history: function () {
+        this.echo("I worked for Persistent Systems Ltd. for 2 years before " +
+            "that I interned at the same company for an year. I felt " +
+            "its time to move on so I came to the University of " +
+            "Florida,Gainesville for my masters. I also interned " +
+            "at Motorola Solutions Inc in the summer of 2013.")
+    },
+
+    pwd: function () {
+        this.echo("/Users/bharathyarlagadda");
+    },
+
+    hello_this_is: function (a) {
+        this.echo("Hey " + a + " Welcome to my site");
+        var email = '';
+        var comments = '';
+        this.push(function (comm, term) {
+            email = comm;
+            term.push(function (comm, term) {
+                comments = comm;
+                term.pop().pop();
+            }, {
+                prompt: 'comments :'
+            });
+        }, {
+            prompt: 'email : '
+        });
+
+    },
+
+    contactme: function () {
+        this.echo("Phone no : +1-314-435-9695\nEmail id : bharath.yarlagadda89@gmail.com")
+    },
+
+    cv: function () {
+        $('.databox').remove();
+        $('#datawin').fadeOut();
+        $('#datawin').fadeIn();
+        $('#windowname').text("Curriculam Vitae");
+        $('#datawin > #datacontainer').append('<object class="databox" ' +
+            'type="application/pdf" data="Resume_Bharath.pdf" width="100%" ' +
+            'height="100%"></object>');
+    },
+
+    linkedin: function() {
+        this.echo("http://www.linkedin.com/pub/bharath-yarlagadda/52/a2b/2a8");
+    },
+
+    '': function () {
+        this.echo()
+    },
+
+};
+
+$('#jq_terminal').terminal(func, {
+    prompt: 'wAtchM3n@busybox:~ $ ',
+    greetings: function () {
+        var d3 = new Date();
+        return "Hit TAB twice for commands and 'clear' to clear the terminal \nLast login: " + d3 + " on ttys000";
+    },
+    onClear: function () {
+        $('#datawin').fadeOut();
+    },
+    tabcompletion: true
+});
+
+</script>
+</body>
+</html>
+
