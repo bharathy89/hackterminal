@@ -195,17 +195,7 @@ nav a.maximize {
 </style>
 
 <script type="text/javascript"> 
-    Parse.initialize("b6VmJr9sfBHEloxMgHef1Yo13SV9hTUDsHE5gKfR", "vX6jMjRua0Aa39TYDAQvPWqmSMn7w6RCIlm6ujdu");
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
+
     window.onload = function(){
     //canvas init
     var canvas = document.getElementById("canvas");
