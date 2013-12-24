@@ -63,7 +63,7 @@
     position: absolute;
 }
 .container {
-    background: rgba(0,0,0,1.0);
+    background: rgba(145,194,201,1);
     height: 100%;
     width: 100%;
     max-height: 485px;
@@ -75,14 +75,18 @@
 }
 
 .terminal {
-    padding:3px;
+    padding:0px;
     overflow: auto;
     height: 100%;
-    width: 554px;
+    width: 100%;
     background: rgba(145,194,201,1);
     color: rgba(44,77,94,1);
     font-weight: bold;
     font-size: 14px;
+}
+
+.terminal-output > div{
+    width: 100%;
 }
 
 .databox {
@@ -316,6 +320,16 @@ nav a.maximize {
 <script type="text/javascript">
 var notroot = false;
 var currentDirectory = "";
+
+function validateEmail(emailText) {
+    var pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+    if (pattern.test(emailText)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 var func = {
 
     projects: function() {
@@ -345,40 +359,45 @@ var func = {
         var email = '';
         var comments = '';
         var name = '';
+        this.echo("Type 'exit' to come out of this ");
         this.push(function(comm, term){
             name = comm;
             term.push(function (comm, term) {
                 email = comm;
-                term.push(function (comm, term) {
-                    comments = comm;
-                    //Extend the native Parse.Object class.
-                    var ListItem = Parse.Object.extend("CommentTable");
-                 
-                    //Instantiate an object of the ListItem class
-                    var listItem = new ListItem();
-                 
-                    //listItem is now the object that we want to save, so we assign the properties that we want on it.
-                    listItem.set("name", name);
-                    listItem.set("email", email);
-                    listItem.set("comments", comments);
-                    
-                    //We call the save method, and pass in success and failure callback functions.
-                    listItem.save(null, {       
-                        success: function(item) {
-                        //Success Callback 
-                            term.echo("Thank You for your comments");
-                        },
+                if (validateEmail(email)) {
+                    term.push(function (comm, term) {
+                        comments = comm;
+                        //Extend the native Parse.Object class.
+                        var ListItem = Parse.Object.extend("CommentTable");
+                     
+                        //Instantiate an object of the ListItem class
+                        var listItem = new ListItem();
+                     
+                        //listItem is now the object that we want to save, so we assign the properties that we want on it.
+                        listItem.set("name", name);
+                        listItem.set("email", email);
+                        listItem.set("comments", comments);
+                        
+                        //We call the save method, and pass in success and failure callback functions.
+                        listItem.save(null, {       
+                            success: function(item) {
+                            //Success Callback 
+                                term.echo("Thank You for your comments");
+                            },
 
-                        error: function(gameScore, error) {
-                            //Failure Callback
-                            term.echo("Sorry Somethings wrong you I dint get your details");
-                        }
+                            error: function(gameScore, error) {
+                                //Failure Callback
+                                term.echo("Sorry Somethings wrong you I dint get your details");
+                            }
+                        });
+
+                        term.pop().pop().pop();
+                    }, {
+                        prompt: 'comments : '
                     });
-
-                    term.pop().pop().pop();
-                }, {
-                    prompt: 'comments :'
-                });
+                } else {
+                    term.echo("Bad Email Address :-( ")
+                }
             }, {
                 prompt: 'email : '
             });
@@ -403,10 +422,6 @@ var func = {
 
     linkedin: function() {
         this.echo("http://www.linkedin.com/pub/bharath-yarlagadda/52/a2b/2a8");
-    },
-
-    '': function () {
-        this.echo()
     },
 
 };

@@ -1801,8 +1801,8 @@
                     var q = u.get().substring(0, u.position());
                     a = q.split(" ");
                     var w;
-                    if (a.length ==
-                        1) w = a[0];
+                    if (a.length ==1) 
+                        w = a[0];
                     else {
                         w = a[a.length - 1];
                         for (j = a.length - 1; j > 0; j--)
