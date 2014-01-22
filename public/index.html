@@ -26,6 +26,7 @@
         background: rgba(48,102,154,1);
         background-size: cover;
         text-align:center;
+        height:100%;
     }
 
     header {
@@ -113,10 +114,6 @@
 }
 
 .projects {
-    padding-left: 70px;
-    padding-right:70px;
-    padding-top:30px;
-    padding-bottom:30px;
     -webkit-transition-duration: 0.8s;
     -moz-transition-duration: 0.8s;
     -o-transition-duration: 0.8s;
@@ -165,6 +162,19 @@
 .title {
     font-size: 48px;
     /*font-weight: bolder;*/
+    font-family: 'Airstream';
+    line-height: 0.8;
+    margin-bottom:5px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.projectdata {
+    padding-left: 70px;
+    padding-right:70px;
+    padding-top:30px;
+    padding-bottom:30px;
+    font-size: 24px;
+    color: rgba(255,252,248,1.0);
     font-family: 'Airstream';
     line-height: 0.8;
     margin-bottom:5px;
@@ -394,22 +404,27 @@ function validateEmail(emailText) {
 var func = {
 
     projects: function() {
+        this.echo("These are just the projects in my github");
+        this.echo("More will be added soon ....");
         $('.databox').remove();
         $('#datawin').fadeOut();
         $('#datawin').fadeIn();
         $('#windowname').text("Projects");
         $('#datawin > #datacontainer').append('<div class="databox" width="100%" height="100%">'+
-            '<a href="https://github.com/bharathy89/Bustogo"><img class="projects" src="img/bustogo.png"></a>'+
-            '<a href="https://github.com/bharathy89/"><img class="projects" src="img/mapla.png"></a>'+
-            '<a href="https://github.com/bharathy89/voxpop-root"><img class="projects" src="img/voxpop.png"></a>'+
-            '<a href="https://github.com/bharathy89/"><img class="projects" src="img/yada.png"></a>'+
-            '<a href="https://github.com/bharathy89/zendroid"><img class="projects" src="img/zendroid.png"></a>'+
-            '<a href="https://github.com/bharathy89/hackterminal"><img class="projects" src="img/myterminalwebsite.png"></a>'+
+            '<div class="projectdata"><a href="https://github.com/bharathy89/Bustogo"><img class="projects" src="img/bustogo.png"></a><br>Bustogo</div>'+
+            //'<a href="https://github.com/bharathy89/"><img class="projects" src="img/mapla.png"></a>'+
+            '<div class="projectdata"><a href="https://github.com/bharathy89/voxpop-root"><img class="projects" src="img/voxpop.png"></a><br>VoxPop</div>'+
+           // '<div class="projectdata"><a href="https://github.com/bharathy89/"><img class="projects" src="img/yada.png"></a><br>Yada</div>'+
+            '<div class="projectdata"><a href="https://github.com/bharathy89/zendroid"><img class="projects" src="img/zendroid.png"></a><br>Zendroid</div>'+
+            '<div class="projectdata"><a href="https://github.com/bharathy89/hackterminal"><img class="projects" src="img/myterminalwebsite.png"></a><br>This website</div>'+
             '</div>');
     },
 
     work_history: function () {
-        this.echo("")
+        this.echo("\nIntern \nCommNSense Inc. \n(Sep 2013 - Present)\n");
+        this.echo("\nSoftware Engineering Intern \nMotorola Solutions Inc. \n(May 2012 - Aug 2013)\n");
+        this.echo("\nSoftware Engineer \nPersistent Systems ltd. \n(Jul 2010 - Jul 2012)\n");
+        this.echo("\nIntern \nPersistent Systems ltd. \n(Nov 2009 - Jun 2010)\n");
     },
 
     pwd: function () {
