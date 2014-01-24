@@ -1,0 +1,278 @@
+ @font-face {
+        font-family: 'Airstream';
+        src: url('assets/Airstream.svg') format('svg'), url('assets/Airstream.woff') format('woff'), url('assets/Airstream.ttf') format('truetype');
+    }
+
+    body {
+        background: rgba(27,27,27,1);
+        background-size: cover;
+        text-align:center;
+        height:100%;
+    }
+
+    header {
+        width: 100%;
+        height: 100px;
+        background: rgba(49,48,44,1);
+        background-repeat: repeat-y;
+        background-position: top top;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        text-align:center;
+    }
+
+    footer {
+        height: 100px;
+        width: 100%;
+        background:rgba(49,48,44,1);
+        background-position: bottom bottom;
+        background-size: cover;
+    }
+
+    canvas {
+        height: 100%;
+        display: block;
+    }
+
+    .contentdiv {
+        max-height: 500px;
+        text-align: center;
+        overflow: auto;
+    }
+
+
+/* OS X Window
+======================================== */
+ .window {
+   
+    background: rgba(222, 222, 222, 1.0);
+    height: 300px;
+    width: 75%;
+    border-radius: 5px;
+    /*box-shadow:inset 0 1px 0 rgba(255, 255, 255, .6), 0 10px 20px 4px rgba(224,224,224,.56), 0 0 0 1px rgba(224,224,224,0.3);*/
+    padding: 3px 0px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.datawindow {
+    background: rgba(222, 222, 222, 1.0);
+    height: 400px;
+    width: 75%;
+    border-radius: 5px;
+    /*box-shadow:inset 0 1px 0 rgba(255, 255, 255, .6), 0 22px 70px 4px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);*/
+    padding: 3px 0px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    max-height: 485px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:0px;
+    overflow: auto;
+}
+.window > .container {
+    background: rgba(8,57,82,1);
+    text-align: left;
+}
+
+.datawindow > .container {
+    background: rgba(88,88,88,1.0);
+    text-align: left;
+}
+
+.terminal {
+    padding:0px;
+    overflow: auto;
+    height: 99%;
+    width: 100%;
+    background: rgba(8,57,82,1);
+    color: rgba(224,224,224,1);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.terminal-output > div{
+    width: 100%;
+}
+
+.databox {
+    background: rgba(88,88,88,1.0);
+    width: 100%;
+    height: 100%;
+    display: table;
+    margin: 0 auto;
+}
+
+.bx-wrapper{
+    width: 99%;
+    height: 90%;
+}
+
+div .bx-viewport{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.bxslider {
+    background: rgba(88,88,88,1.0);
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.projectdata {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    color: rgba(255,252,248,1.0);
+    font-family: 'Airstream';
+    line-height: 0.8;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    margin: 0 auto;
+}
+
+.mydiv { width:100%; height: 100%; margin: 0 auto;  color: rgba(255,252,248,1.0); }
+
+.myimage { float:left; width:150px; height:200px; margin-top:10px; color: rgba(255,252,248,1.0); text-decoration: none; text-align: center; }
+
+.projects {
+    margin:auto;
+}
+
+.projects {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+}
+
+.projects:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.circletag {
+    width: 200px;
+    height: 200px;
+    background: #E6E7ED;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;  
+    -o-border-radius: 100px;
+    background: url('img/profilepicture.jpg') no-repeat;
+    background-size: 200px 200px;
+    background-position: 0px 0px; 
+    margin: 0 auto;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);  
+    -o-box-shadow: 0 0 8px rgba(0, 0, 0, .8);  
+}
+
+.content {
+    margin:20px auto;
+    width: 450px;
+    text-align:center;
+    color: rgba(255,252,248,1.0);
+}
+
+.title {
+    font-size: 48px;
+    /*font-weight: bolder;*/
+    font-family: 'Airstream';
+    line-height: 0.8;
+    margin-bottom:5px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.somedata {
+    font-family: 'Airstream';
+    line-height: 1.1;
+    font-size:25px !important;
+    margin: 0 auto;
+}
+
+.databox {
+    text-align: left;
+}
+
+
+h1 {
+    font: normal normal 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    text-align: center;
+    position:relative;
+    z-index:2;
+    top:-23px;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+    color:#444;
+}
+h2 {
+    font: normal bold 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    margin-bottom:3px;
+}
+
+h6 {
+    font: normal bold 13px/20px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    margin-bottom:3px; 
+    color:#444;
+}
+
+p {
+    font: normal normal 11px/14px"Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    padding-top: 3px;
+}
+h2, p {
+    margin-left: 86px;
+}
+p a, p a:link, p a:visited, p a:hover, p a:active {
+    border-bottom: 1px dotted #888;
+    text-decoration: none;
+    color: #000;
+}
+nav {
+    height:19px;
+}
+
+nav a {
+    display: inline-block;
+    margin: 2px 2px 3px 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background: #f36;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, .5);
+    text-indent: -9999px;
+    position: relative;
+}
+
+nav a.close {
+    background: #FD4E4E;
+}
+nav a.minimize {
+    background: #F3BB55;
+}
+nav a.maximize {
+    background: #96D16F;
+}
